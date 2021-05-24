@@ -22,7 +22,7 @@ def preprocess(img, image_size=250):
 def postprocess(image, class_probs, bounding_box):
     # Split the results into class probabilities and box coordinates
     # First let's get the class label
-    label_names = (['meningioma_tumor', 'glioma_tumor', 'pituitary_tumor', 'no_tumor'])
+    label_names = (['meningioma_tumor', 'glioma_tumor', 'no_tumor', 'pituitary_tumor'])
     # The index of class with the highest confidence is our target class
     class_index = np.argmax(class_probs)
 
@@ -59,7 +59,8 @@ def predict_final(image, returnimage=False, scale=0.9):
     label, (x1, y1, x2, y2), confidence = postprocess(image, class_probs, bounding_box)
 
     # Now annotate the image
-    cv2.rectangle(image, (x1, y1), (x2, y2), (0, 255, 100), 2)
+    if label != "no_tumor":
+        cv2.rectangle(image, (x1, y1), (x2, y2), (0, 255, 100), 2)
     # cv2.putText(
     #    image,
     #   '{}'.format(label, confidence),
@@ -72,6 +73,6 @@ def predict_final(image, returnimage=False, scale=0.9):
     # Show the Image with matplotlib
 
     fig = plt.figure(figsize=(10, 10))
-    plt.title(label + confidence)
+    plt.title(label + " " + str(confidence.max()*100) + "%")
     plt.imshow(image[:, :, ::-1])
     return fig
