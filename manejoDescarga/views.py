@@ -28,8 +28,6 @@ def get_filename():
 
 def plot(request):
     imagen = '/Users/juancgarcia/Downloads/PaginaTesis/media/' + filename
-    print(imagen)
-    print(os.path.isfile(imagen))
     imagen = cv2.imread(imagen)
     fig = predict_final(imagen)
     response = HttpResponse(content_type='image/png')

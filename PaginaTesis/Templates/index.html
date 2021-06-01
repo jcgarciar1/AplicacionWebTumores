@@ -1,4 +1,4 @@
-{% load static %}
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <!-- Required meta tags -->
@@ -12,7 +12,8 @@
       integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="{% static 'style.css' %}" />
+      {% load static %}
+    <link rel="stylesheet" href= "{% load static 'style.css'%}"/>
 
     <title>Hello, world!</title>
   </head>
@@ -21,7 +22,7 @@
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <a class="navbar-brand" href="#">
           <img
-            src="{% static 'images/brain.png' %}"
+            src="../static/images/brain.png"
             width="80"
             height="65"
             class="d-inline-block align-top"
@@ -53,25 +54,21 @@
     <div class="container py-5">
       <!-- For demo purpose -->
       <header class="text-black text-center">
-        <h1 class="display-4">Bienvenido al clasificador y localizador de tumores</h1>
+        <h1 class="display-4">Bootstrap image upload</h1>
         <p class="lead mb-0">
-         Carga la imagen del tumor que quieras clasificar y detectar
+          Build a simple image upload button using Bootstrap 4.
         </p>
       </header>
 
       <div class="row py-4">
         <div class="col-lg-6 mx-auto">
           <!-- Upload image input-->
-
-              <form method="post" enctype="multipart/form-data">
-                  {% csrf_token %}
-                  <div
+          <div
             class="input-group mb-3 px-2 py-2 rounded-pill bg-white shadow-sm"
           >
             <input
               id="upload"
               type="file"
-              name = "myfile"
               onchange="readURL(this);"
               class="form-control border-0"
             />
@@ -79,9 +76,8 @@
               id="upload-label"
               for="upload"
               class="font-weight-light text-muted"
-              >Choose file</label>
-
-
+              >Choose file</label
+            >
             <div class="input-group-append">
               <label for="upload" class="btn btn-light m-0 rounded-pill px-4">
                 <i class="fa fa-cloud-upload mr-2 text-muted"></i
@@ -92,33 +88,11 @@
                 ></label
               >
             </div>
-                  </div>
-                  <div id="boton-calificar" class="text-center">
-                <button
-          id="btn-calificar"
-          type="submit"
-          class="btn btn-dark btn-lg"
-          href = "/file"
-          disabled
-        >
-          Subir
-                </button>
-                      {% if uploaded_file_url %}
-                      <a
-          id = "link"
-          class=" button btn btn-dark btn-lg"
-          href = "/file"
-          disabled
-        >
-          Detectar
-        </a>
-                      {% endif %}
-      </div>
-              </form>
+          </div>
 
           <!-- Uploaded image area-->
           <p class="font-italic text-black text-center">
-      Pre visualización de la imagen
+            The image uploaded will be rendered inside the box below.
           </p>
           <div class="image-area image-border mt-4" id="image-area">
             <img
@@ -129,11 +103,20 @@
         </div>
       </div>
 
+      <div id="boton-calificar" class="text-center">
+        <button
+          id="btn-calificar"
+          type="button"
+          class="btn btn-dark btn-lg"
+          disabled
+        >
+          Detectar
+        </button>
+      </div>
     </div>
 
 
-
-    <script src="{% static 'app.js' %}"></script>
+    <script src="../static/app.js"></script>
     <script
       src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
       integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
