@@ -3,7 +3,6 @@ from matplotlib.backends.backend_agg import FigureCanvasAgg
 from django.shortcuts import render, redirect
 from manejoDescarga.redes import predict_final
 import numpy as np
-import matplotlib.pyplot as plt
 import cv2
 import os
 # Create your views here.
@@ -30,7 +29,8 @@ def plot(request):
     imagen = '/Users/juancgarcia/Downloads/PaginaTesis/media/' + filename
     imagen = cv2.imread(imagen)
     fig = predict_final(imagen)
-    response = HttpResponse(content_type='image/png')
-    canvas = FigureCanvasAgg(fig)
-    canvas.print_png(response)
-    return response
+    fig.savefig('/Users/juancgarcia/Downloads/PaginaTesis/PaginaTesis/static/images/nueva.png')
+    #response = HttpResponse(content_type='image/png')
+    #canvas = FigureCanvasAgg(fig)
+    #canvas.print_png(response)
+    return render(request, 'index.html')

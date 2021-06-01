@@ -2,6 +2,7 @@ from keras import models
 import cv2
 import numpy as np
 import matplotlib.pyplot as plt
+import matplotlib
 import os
 def load_models():
     clasificador = models.load_model('/Users/juancgarcia/Downloads/PaginaTesis/PaginaTesis/Modelos/tesisInception2.h5')
@@ -49,6 +50,7 @@ def postprocess(image, class_probs, bounding_box):
 
 def predict_final(image, returnimage=False, scale=0.9):
     # Before we can make a prediction we need to preprocess the image.
+    matplotlib.use('Agg')
     processed_image = preprocess(image)
     model,model_boxes = load_models()
     # Now we can use our model for prediction
